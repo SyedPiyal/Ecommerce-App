@@ -60,6 +60,7 @@ class RegisterFragment : Fragment() {
                     is Resource.Success -> {
                         binding.buttonRegisterRegister.revertAnimation()
                     }
+                    else -> Unit
                 }
             }
         }
