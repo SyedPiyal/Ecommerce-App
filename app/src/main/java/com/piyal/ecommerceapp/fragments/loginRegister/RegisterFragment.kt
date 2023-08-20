@@ -9,14 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.auth.User
 import com.piyal.ecommerceapp.R
 import com.piyal.ecommerceapp.databinding.FragmentAccountOptionBinding
 import com.piyal.ecommerceapp.databinding.FragmentRegisterBinding
+import com.piyal.ecommerceapp.util.RegisterValidation
 import com.piyal.ecommerceapp.util.Resource
 import com.piyal.ecommerceapp.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
@@ -37,6 +41,10 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+            tvDoYouHaveAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            }
+
             buttonRegisterRegister.setOnClickListener {
                 val user = com.piyal.ecommerceapp.data.User(
                     edFirstNameRegister.text.toString().trim(),
@@ -61,6 +69,26 @@ class RegisterFragment : Fragment() {
                         binding.buttonRegisterRegister.revertAnimation()
                     }
                     else -> Unit
+                }
+            }
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.edEmailRegister.apply {
+                            requestFocus()
+                            error = validation.email.message
+                        }
+                    }
+                }
+                if (validation.password is RegisterValidation.Failed){
+                    withContext(Dispatchers.Main){
+                        binding.edPasswordRegister.apply {
+                            requestFocus()
+                            error = validation.password.message
+                        }
+                    }
                 }
             }
         }
