@@ -29,21 +29,20 @@ import kotlinx.coroutines.flow.collectLatest
 private val TAG = "MainCategoryFragment"
 
 @AndroidEntryPoint
-class MainCategoryFragment : Fragment() {
+class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
 
-    private var _binding: FragmentMainCategoryBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding: FragmentMainCategoryBinding
     private lateinit var specialProductsAdapter: SpecialProductsAdapter
     private lateinit var bestDealsAdapter: BestDealsAdapter
     private lateinit var bestProductsAdapter: BestProductsAdapter
     private val viewModel by viewModels<MainCategoryViewModel>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMainCategoryBinding.inflate(inflater, container, false)
+    ): View {
+        binding = FragmentMainCategoryBinding.inflate(inflater)
         return binding.root
     }
 
@@ -56,7 +55,7 @@ class MainCategoryFragment : Fragment() {
 
         specialProductsAdapter.onClick = {
             val b = Bundle().apply { putParcelable("product",it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
+          findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
         }
 
         bestDealsAdapter.onClick = {

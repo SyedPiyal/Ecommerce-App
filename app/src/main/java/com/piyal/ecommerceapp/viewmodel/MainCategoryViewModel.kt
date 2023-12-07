@@ -1,10 +1,12 @@
 package com.piyal.ecommerceapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.piyal.ecommerceapp.data.Product
 import com.piyal.ecommerceapp.util.Resource
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +21,8 @@ class MainCategoryViewModel @Inject constructor(
     private val _specialProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val specialProducts: StateFlow<Resource<List<Product>>> = _specialProducts
 
-    private val _bestDealsProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
+    private val _bestDealsProducts =
+        MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
     val bestDealsProducts: StateFlow<Resource<List<Product>>> = _bestDealsProducts
 
     private val _bestProducts = MutableStateFlow<Resource<List<Product>>>(Resource.Unspecified())
@@ -96,3 +99,15 @@ internal data class PagingInfo(
     var oldBestProducts: List<Product> = emptyList(),
     var isPagingEnd: Boolean = false
 )
+
+
+
+
+
+
+
+
+
+
+
+

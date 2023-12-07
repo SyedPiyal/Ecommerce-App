@@ -13,7 +13,6 @@ import com.piyal.ecommerceapp.data.order.OrderStatus
 import com.piyal.ecommerceapp.data.order.getOrderStatus
 import com.piyal.ecommerceapp.databinding.OrderItemBinding
 
-
 class AllOrdersAdapter : Adapter<AllOrdersAdapter.OrdersViewHolder>() {
 
     inner class OrdersViewHolder(private val binding: OrderItemBinding) : ViewHolder(binding.root) {

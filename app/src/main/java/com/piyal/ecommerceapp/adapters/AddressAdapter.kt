@@ -16,7 +16,7 @@ class AddressAdapter : Adapter<AddressAdapter.AddressViewHolder>() {
 
     inner class AddressViewHolder(val binding: AddressRvItemBinding) :
         ViewHolder(binding.root) {
-        fun bind(address: Address, isSelected: Boolean) {
+        fun bind(address: Address,isSelected: Boolean) {
             binding.apply {
                 buttonAddress.text = address.addressTitle
                 if (isSelected){

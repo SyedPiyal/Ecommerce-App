@@ -2,7 +2,7 @@ package com.piyal.ecommerceapp.util
 
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.piyal.ecommerceapp.R
+
 import com.piyal.ecommerceapp.activities.ShoppingActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
