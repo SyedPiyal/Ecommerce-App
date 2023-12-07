@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.piyal.ecommerceapp.R
 import com.piyal.ecommerceapp.adapters.HomeViewpagerAdapter
 import com.piyal.ecommerceapp.databinding.FragmentHomeBinding
-import com.example.kelineyt.fragments.categories.*
+import com.piyal.ecommerceapp.fragments.categories.*
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
